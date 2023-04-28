@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+  const arr= [12,8,2,10,6,4,1];
+  const [add, setAdd]= useState([12,8,2,10,6,4,1]);
+  const [cart, setCart] = useState(true)
+
+  function handleIncrease(){
+    setAdd(arr.sort((a,b)=> a- b))
+    setCart(!cart);
+  }
+  function handleDecrease(){
+    setAdd(arr.sort((a,b)=> b-a))
+    setCart(!cart);
+
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    {cart ? (<button onClick={handleIncrease}>Change to Ascending Order</button>) : (<button onClick={handleDecrease}>change to descending order</button>)}
+    
+    
+      <h2>Numbers</h2>
+      <h1>{add.join(", ")}</h1>
     </div>
   );
 }
